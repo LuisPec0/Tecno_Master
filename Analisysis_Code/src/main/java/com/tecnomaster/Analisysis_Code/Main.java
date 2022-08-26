@@ -49,11 +49,13 @@ public class Main {
 
         //leer y modificar el Monto
         MovimientoDinero din1 = new MovimientoDinero(10000, true, "consignacion", empleado);
+        System.out.println("el movimiento de dinero es: "+din1);
         System.out.println("El monto del movimiento es de: "+din1.getMonto());
-        din1.setMonto(15000);
+        din1.setMonto(-15000);
         System.out.println("El nuevo monto es de : "+din1.getMonto());
 
         //Falta leer y modificar el tipo de movimiento
+
 
         //leer y modificar el tipo de movimiento
         System.out.println("El tipo de movimiento es: "+din1.getConceptoMovimiento());

@@ -4,6 +4,7 @@ public class MovimientoDinero {
     //Atributos
     private double monto;
     private boolean tipo; //Donde False: Es un movimiento negativo y True: Es un movimiento positivo
+
     private String conceptoMovimiento;
     private Empleado usuario; // Usuario es un objeto de la clase empleado
 
@@ -49,9 +50,6 @@ public class MovimientoDinero {
     public boolean isTipo() {
         return tipo;
     }
-    
-
-
 
     //Metodo toString
 
