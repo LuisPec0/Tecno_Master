@@ -70,11 +70,7 @@ public class MovimientoDinero {
   
     }
 
-    public void tipoMonto(){
-        if(tipoMonto){
-            System.out.println("El monto creado es positivo");
-        }else{
-            System.out.println("El monto creado es negativo");
-        }
+    public void agregarMonto(double nuevoMonto){
+        monto += nuevoMonto;
     }
 }
