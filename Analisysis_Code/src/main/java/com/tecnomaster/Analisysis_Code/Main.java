@@ -42,7 +42,7 @@ public class Main {
         Empresa emp1=new Empresa("104542788","Coca cola s.a","Cr 20 30 44","3205412");
         System.out.println("La empresa creada es:"+emp1.getNombre());
         //Instanciar Clase Empleado
-        Empleado empleado=new Empleado(3451144,"Jose Rudas","rudaslio17@gmail.com","ADMINISTRADOR",emp1) ;
+        Empleado empleado=new Empleado(3451144,"Jose Rudas","rudaslio17@gmail.com","ADMINISTRADOR",emp1);
 
         //Leer y modificar el nombre de un empleado
         System.out.println("El nombre del empleado es: "+empleado.getNombreEmpleado());
