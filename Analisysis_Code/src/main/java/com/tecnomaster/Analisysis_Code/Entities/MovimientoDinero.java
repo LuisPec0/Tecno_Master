@@ -3,7 +3,7 @@ package com.tecnomaster.Analisysis_Code.Entities;
 public class MovimientoDinero {
     //Atributos
     private double monto;
-    private boolean tipoMonto; //Donde False: Es un movimiento negativo y True: Es un movimiento positivo
+
     private String conceptoMovimiento;
     private Empleado usuario; // Usuario es un objeto de la clase empleado
 
@@ -55,9 +55,6 @@ public class MovimientoDinero {
     public boolean isTipoMonto() {
         return tipoMonto;
     }
-    
-
-
 
     //Metodo toString
 

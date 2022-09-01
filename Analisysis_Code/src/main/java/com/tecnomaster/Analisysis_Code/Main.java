@@ -42,7 +42,7 @@ public class Main {
         Empresa emp1=new Empresa("104542788","Coca cola s.a","Cr 20 30 44","3205412");
         System.out.println("La empresa creada es:"+emp1.getNombre());
         //Instanciar Clase Empleado
-        Empleado empleado=new Empleado(3451144,"Jose Rudas","rudaslio17@gmail.com","ADMINISTRADOR",emp1) ;
+        Empleado empleado=new Empleado(3451144,"Jose Rudas","rudaslio17@gmail.com","ADMINISTRADOR",emp1);
 
         //Leer y modificar el nombre de un empleado
         System.out.println("El nombre del empleado es: "+empleado.getNombreEmpleado());
@@ -71,8 +71,9 @@ public class Main {
         MovimientoDinero din1 = new MovimientoDinero(10000, "consignacion", empleado);
 
         //Leer y modificar el Monto del Movimiento
+
         System.out.println("El monto del movimiento es de: "+din1.getMonto());
-        din1.setMonto(15000);
+        din1.setMonto(-15000);
         System.out.println("El nuevo monto es de : "+din1.getMonto());
 
         //Es posible crear montos positivos y negativos
@@ -82,7 +83,8 @@ public class Main {
         din1.agregarMonto(1000);
         System.out.println("Monto Actual: "+din1.getMonto());
 
-        //Leer y modificar el concepto del Movimiento
+
+        //leer y modificar el tipo de movimiento
         System.out.println("El tipo de movimiento es: "+din1.getConceptoMovimiento());
         din1.setConceptoMovimiento("Retiro");
         System.out.println("El nuevo movimiento es: "+din1.getConceptoMovimiento());

@@ -1,14 +1,22 @@
 package com.tecnomaster.Analisysis_Code.Controller;
 
+
+import com.tecnomaster.Analisysis_Code.Entities.Empleado;
 import com.tecnomaster.Analisysis_Code.Entities.MovimientoDinero;
-import com.tecnomaster.Analisysis_Code.Services.MovimientoDineroServices;
+import com.tecnomaster.Analisysis_Code.Services.MovimientoDineroServicios;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+
+@RestController
 public class MovimientoDineroController {
-    MovimientoDineroServices services;
+
+    MovimientoDineroServicios services;
 
     public MovimientoDineroController(){
-        this.services = new MovimientoDineroServices();
+        this.services = new MovimientoDineroServicios();
+
+
     }
 
     @GetMapping("/enterprises/{id}/movements")
@@ -28,4 +36,5 @@ public class MovimientoDineroController {
     public String eliminarMovimientoDinero (@PathVariable("id") Integer index){
         return this.services.eliminarMovimientoDinero(index);
     }
+
 }
