@@ -2,10 +2,11 @@ package com.tecnomaster.Analisysis_Code.Entities;
 
 public class Empleado {
     private  int id;
-    private static String nombreEmpleado;
+    private  String nombreEmpleado;
     private  String correo;
     private  String role;
     private Empresa  empresa;
+
 
     public Empleado(int id, String nombreEmpleado, String correo, String role, Empresa empresa)
     {
@@ -35,7 +36,7 @@ public class Empleado {
         this.id = id;
     }
 
-    public static String getNombreEmpleado() {
+    public String getNombreEmpleado() {
         return nombreEmpleado;
     }
 
