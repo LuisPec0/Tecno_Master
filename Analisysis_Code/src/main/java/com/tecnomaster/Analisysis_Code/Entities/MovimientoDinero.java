@@ -4,12 +4,15 @@ public class MovimientoDinero {
     //Atributos
     private double monto;
 
+    private boolean tipoMonto;
+
     private String conceptoMovimiento;
     private Empleado usuario; // Usuario es un objeto de la clase empleado
 
     //Constructor
     public MovimientoDinero(double monto, String conceptoMovimiento, Empleado usuario) {
         this.monto = monto;
+        
         if(monto < 0){
             tipoMonto = false;
         }else{
