@@ -2,18 +2,17 @@ package com.tecnomaster.Analisysis_Code.Controller;
 
 import com.tecnomaster.Analisysis_Code.Entities.Empresa;
 import com.tecnomaster.Analisysis_Code.Services.EmpresaServices;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
 @RestController
 public class EmpresaController {
+    @Autowired
     EmpresaServices services;
 
     //Constructor
-    public EmpresaController(){
-        this.services = new EmpresaServices();
-    }
 
     //Get enterprises
     @GetMapping("/enterprises")

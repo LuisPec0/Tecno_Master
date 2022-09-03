@@ -1,9 +1,10 @@
 package com.tecnomaster.Analisysis_Code.Services;
 
 import com.tecnomaster.Analisysis_Code.Entities.Empresa;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-
+@Service
 public class EmpresaServices {
 
     ArrayList<Empresa> enterprise = new ArrayList<Empresa>();
