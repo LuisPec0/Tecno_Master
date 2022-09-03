@@ -1,11 +1,12 @@
 package com.tecnomaster.Analisysis_Code.Services;
 import com.tecnomaster.Analisysis_Code.Entities.Empleado;
 import com.tecnomaster.Analisysis_Code.Entities.Empresa;
-import jdk.internal.icu.text.UnicodeSet;
+//import jdk.internal.icu.text.UnicodeSet;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
-
+@Service
 public class EmpleadoServices {
 
     public EmpleadoServices() {

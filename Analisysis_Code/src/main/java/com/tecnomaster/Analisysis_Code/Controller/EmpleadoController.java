@@ -2,12 +2,14 @@ package com.tecnomaster.Analisysis_Code.Controller;
 
 import com.tecnomaster.Analisysis_Code.Entities.Empleado;
 import com.tecnomaster.Analisysis_Code.Services.EmpleadoServices;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
 @RestController
 public class EmpleadoController {
+    @Autowired
     EmpleadoServices servicio;
 
     public EmpleadoController(){
