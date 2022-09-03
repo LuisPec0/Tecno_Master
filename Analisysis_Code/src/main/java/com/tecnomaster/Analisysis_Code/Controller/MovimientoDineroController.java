@@ -4,20 +4,15 @@ package com.tecnomaster.Analisysis_Code.Controller;
 import com.tecnomaster.Analisysis_Code.Entities.Empleado;
 import com.tecnomaster.Analisysis_Code.Entities.MovimientoDinero;
 import com.tecnomaster.Analisysis_Code.Services.MovimientoDineroServicios;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
 @RestController
 public class MovimientoDineroController {
-
+    @Autowired
     MovimientoDineroServicios services;
-
-    public MovimientoDineroController(){
-        this.services = new MovimientoDineroServicios();
-
-
-    }
 
     @GetMapping("/enterprises/{id}/movements")
 

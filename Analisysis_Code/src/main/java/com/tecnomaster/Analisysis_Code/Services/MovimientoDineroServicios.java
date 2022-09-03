@@ -5,11 +5,12 @@ import com.tecnomaster.Analisysis_Code.Entities.Empleado;
 
 import com.tecnomaster.Analisysis_Code.Entities.Empresa;
 import com.tecnomaster.Analisysis_Code.Entities.MovimientoDinero;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
 
-
+@Service
 public class MovimientoDineroServicios {
 
     ArrayList<MovimientoDinero> lista  = new ArrayList<MovimientoDinero>();
