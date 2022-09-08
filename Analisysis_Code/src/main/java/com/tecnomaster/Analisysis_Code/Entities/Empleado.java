@@ -3,16 +3,15 @@ package com.tecnomaster.Analisysis_Code.Entities;
 import java.util.List;
 
 public class Empleado {
-    private  int id;
+
     private  String nombreEmpleado;
     private  String correo;
     private  String role;
     private Empresa empresa;
-    private List <MovimientoDinero> movimientoDinero; //MovimientoDinero Agregar
 
-    public Empleado(int id, String nombreEmpleado, String correo, String role, Empresa empresa)
+    public Empleado(String nombreEmpleado, String correo, String role, Empresa empresa)
     {
-        this.id = id;
+
         this.nombreEmpleado = nombreEmpleado;
         this.correo = correo;
         this.empresa = empresa;
@@ -28,14 +27,6 @@ public class Empleado {
             this.role = "operativo";
 
         }
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNombreEmpleado() {

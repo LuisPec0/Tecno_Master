@@ -26,7 +26,7 @@ public class MovimientoDineroServicios {
     public void datosiniciales(){
         Empresa miEmpresa = new Empresa("Tech Store", "Avenida 28", "3445676", "123456");
 
-        Empleado empleado=new Empleado(3451144,"Jose Rudas","rudaslio17@gmail.com","ADMINISTRADOR", miEmpresa);
+        Empleado empleado=new Empleado("Jose Rudas","rudaslio17@gmail.com","ADMINISTRADOR", miEmpresa);
 
         Empleado Empleado;
         lista.add(new MovimientoDinero(250000,"consigncion", empleado));

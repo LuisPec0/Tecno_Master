@@ -1,16 +1,24 @@
 package com.tecnomaster.Analisysis_Code.Entities;
 
+import java.util.Calendar;
+
 public class MovimientoDinero {
     //Atributos
-    private double monto;
+
+    private float monto;
 
     private boolean tipoMonto;
 
     private String conceptoMovimiento;
+
+
+    private Empresa empresa; //Empresa es un objeto de la clase Empresa *
+
+
     private Empleado usuario; // Usuario es un objeto de la clase empleado
 
     //Constructor
-    public MovimientoDinero(double monto, String conceptoMovimiento, Empleado usuario) {
+    public MovimientoDinero(float monto, String conceptoMovimiento, Empleado usuario) {
         this.monto = monto;
         
         if(monto < 0){
@@ -30,7 +38,7 @@ public class MovimientoDinero {
     }
 
     public void setMonto(double monto) {
-        this.monto = monto;
+        this.monto = (float) monto;
     }
 
 
