@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args) {
         //Pruebas Clase Empresa
         //Instanciar Clase Empresa
-        Empresa miEmpresa = new Empresa(1,"Tech Store", "Avenida 28", "3445676", "123456", );
+        /*Empresa miEmpresa = new Empresa(1,"Tech Store", "Avenida 28", "3445676", "123456", );
 
         //Leer y modificar el nombre de la empresa
         System.out.println("Lectura nombre empresa: "+miEmpresa.getNombre());
@@ -94,18 +94,6 @@ public class Main {
 
         //Rol del usuario encargado del movimiento
         System.out.println("El rol del usuario encargado del movimiento fue: "+empleado.getRole());
-
-
-
-
-
-
-
-
-
-
-
-
-
+    */
     }
 }
