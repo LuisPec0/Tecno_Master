@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args) {
         //Pruebas Clase Empresa
         //Instanciar Clase Empresa
-        Empresa miEmpresa = new Empresa("Tech Store", "Avenida 28", "3445676", "123456");
+        Empresa miEmpresa = new Empresa(1,"Tech Store", "Avenida 28", "3445676", "123456", );
 
         //Leer y modificar el nombre de la empresa
         System.out.println("Lectura nombre empresa: "+miEmpresa.getNombre());
@@ -39,7 +39,7 @@ public class Main {
         //-----------------------------------------------------------------------------------------------------
 
         //Pruebas Clase Empleado
-        Empresa emp1=new Empresa("104542788","Coca cola s.a","Cr 20 30 44","3205412");
+        Empresa emp1=new Empresa(1,"104542788","Coca cola s.a","Cr 20 30 44","3205412");
         System.out.println("La empresa creada es:"+emp1.getNombre());
         //Instanciar Clase Empleado
         Empleado empleado=new Empleado(3451144,"Jose Rudas","rudaslio17@gmail.com","ADMINISTRADOR",emp1);

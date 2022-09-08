@@ -1,16 +1,29 @@
 package com.tecnomaster.Analisysis_Code.Entities;
 
+
+import java.util.Date;
+
 public class Empresa {
+    private int id;
     private String nombre;
     private String direccion;
     private String telefono;
     private String nit;
+    //@Temporal(TemporalType.DATE)
+    //@Column(nullable = false)
+    private Date fechaCreacion;
+    //@Temporal(TemporalType.DATE)
+    //@Column(nullable = false)
+    private Date fechaActualizacion;
 
-    public Empresa(String nombre, String direccion, String telefono, String nit) {
+    public Empresa(int id, String nombre, String direccion, String telefono, String nit, Date fechaCreacion, Date fechaActualizacion) {
+        this.id = id;
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
         this.nit = nit;
+        this.fechaCreacion = fechaCreacion;
+        this.fechaActualizacion = fechaActualizacion;
     }
 
     public String getNombre() {
@@ -44,5 +57,20 @@ public class Empresa {
     public void setNit(String nit) {
         this.nit = nit;
     }
-    
+
+    public Date getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(Date fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    public Date getFechaActualizacion() {
+        return fechaActualizacion;
+    }
+
+    public void setFechaActualizacion(Date fechaActualizacion) {
+        this.fechaActualizacion = fechaActualizacion;
+    }
 }

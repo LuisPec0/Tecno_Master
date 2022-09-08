@@ -1,5 +1,6 @@
 package com.tecnomaster.Analisysis_Code.Entities;
 
+import java.util.Date;
 import java.util.List;
 
 public class Empleado {
@@ -8,14 +9,23 @@ public class Empleado {
     private  String correo;
     private  String role;
     private Empresa empresa;
-    private List <MovimientoDinero> movimientoDinero; //MovimientoDinero Agregar
+    private List <MovimientoDinero> movimientoDinero; //MovimientoDinero Agregar}
 
-    public Empleado(int id, String nombreEmpleado, String correo, String role, Empresa empresa)
-    {
+    //@Temporal(TemporalType.DATE)
+    //@Column(nullable = false)
+    private Date fechaCreacion;
+
+    //@Temporal(TemporalType.DATE)
+    //@Column(nullable = false)
+    private Date fechaActualizacion;
+
+    public Empleado(int id, String nombreEmpleado, String correo, String role, Empresa empresa, Date fechaCreacion, Date fechaActualizacion) {
         this.id = id;
         this.nombreEmpleado = nombreEmpleado;
         this.correo = correo;
         this.empresa = empresa;
+        this.fechaCreacion = fechaCreacion;
+        this.fechaActualizacion = fechaActualizacion;
 
         if (role.equalsIgnoreCase("administrador") || role.equalsIgnoreCase("operativo") )
         {
@@ -88,4 +98,19 @@ public class Empleado {
         this.empresa.setNombre(nuevoNombre);
     }
 
+    public Date getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(Date fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    public Date getFechaActualizacion() {
+        return fechaActualizacion;
+    }
+
+    public void setFechaActualizacion(Date fechaActualizacion) {
+        this.fechaActualizacion = fechaActualizacion;
+    }
 }
