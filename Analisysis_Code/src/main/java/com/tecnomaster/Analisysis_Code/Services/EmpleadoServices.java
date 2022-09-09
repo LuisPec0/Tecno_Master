@@ -1,7 +1,6 @@
 package com.tecnomaster.Analisysis_Code.Services;
 import com.tecnomaster.Analisysis_Code.Entities.Empleado;
 import com.tecnomaster.Analisysis_Code.Entities.Empresa;
-//import jdk.internal.icu.text.UnicodeSet;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,9 +19,9 @@ public class EmpleadoServices {
     ArrayList<Empleado> listaEmpleado = new ArrayList<Empleado>();
 
     public void datosEmpleado() {
-        listaEmpleado.add(new Empleado(3451144, "Jose Rudas", "rudaslio17@gmail.com", "ADMINISTRADOR", emp1));
-        listaEmpleado.add(new Empleado(3451144, "tomas Rudas", "rudaslio17@gmail.com", "ADMINISTRADOR", emp1));
-        listaEmpleado.add(new Empleado(3451144, "pepe Rudas", "rudaslio17@gmail.com", "ADMINISTRADOR", emp1));
+        listaEmpleado.add(new Empleado("Jose Rudas", "rudaslio17@gmail.com", "ADMINISTRADOR", emp1));
+        listaEmpleado.add(new Empleado( "tomas Rudas", "rudaslio17@gmail.com", "ADMINISTRADOR", emp1));
+        listaEmpleado.add(new Empleado("pepe Rudas", "rudaslio17@gmail.com", "ADMINISTRADOR", emp1));
     }
 
 
