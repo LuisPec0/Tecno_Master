@@ -4,11 +4,17 @@ import java.util.Date;
 import java.util.List;
 
 public class Empleado {
-    private  int id;
+
     private  String nombreEmpleado;
     private  String correo;
     private  String role;
     private Empresa empresa;
+<<<<<<< HEAD
+
+    public Empleado(String nombreEmpleado, String correo, String role, Empresa empresa)
+    {
+
+=======
     private List <MovimientoDinero> movimientoDinero; //MovimientoDinero Agregar}
 
     //@Temporal(TemporalType.DATE)
@@ -21,6 +27,7 @@ public class Empleado {
 
     public Empleado(int id, String nombreEmpleado, String correo, String role, Empresa empresa, Date fechaCreacion, Date fechaActualizacion) {
         this.id = id;
+>>>>>>> 304e7fd67161b49ff6963865bb2b8d8a8384864f
         this.nombreEmpleado = nombreEmpleado;
         this.correo = correo;
         this.empresa = empresa;
@@ -38,14 +45,6 @@ public class Empleado {
             this.role = "operativo";
 
         }
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNombreEmpleado() {

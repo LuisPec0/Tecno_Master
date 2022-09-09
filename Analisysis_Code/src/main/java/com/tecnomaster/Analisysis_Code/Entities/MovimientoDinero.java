@@ -1,13 +1,28 @@
 package com.tecnomaster.Analisysis_Code.Entities;
 
+<<<<<<< HEAD
+import java.util.Calendar;
+
+public class MovimientoDinero {
+    //Atributos
+
+    private float monto;
+
+=======
 import java.util.Date;
 
 public class MovimientoDinero {
     //Atributos
     private int id;
     private double monto;
+>>>>>>> 304e7fd67161b49ff6963865bb2b8d8a8384864f
     private boolean tipoMonto;
     private String conceptoMovimiento;
+
+
+    private Empresa empresa; //Empresa es un objeto de la clase Empresa *
+
+
     private Empleado usuario; // Usuario es un objeto de la clase empleado
     //@Temporal(TemporalType.DATE)
     //@Column(nullable = false)
@@ -17,7 +32,11 @@ public class MovimientoDinero {
     private Date fechaActualizacion;
 
     //Constructor
+<<<<<<< HEAD
+    public MovimientoDinero(float monto, String conceptoMovimiento, Empleado usuario) {
+=======
     public MovimientoDinero(double monto, String conceptoMovimiento, Empleado usuario, Date fechaCreacion, Date fechaActualizacion) {
+>>>>>>> 304e7fd67161b49ff6963865bb2b8d8a8384864f
         this.monto = monto;
         
         if(monto < 0){
@@ -39,7 +58,7 @@ public class MovimientoDinero {
     }
 
     public void setMonto(double monto) {
-        this.monto = monto;
+        this.monto = (float) monto;
     }
 
 

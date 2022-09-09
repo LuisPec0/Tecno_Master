@@ -1,5 +1,6 @@
 package com.tecnomaster.Analisysis_Code.Entities;
 
+<<<<<<< HEAD
 
 
 import javax.persistence.*;
@@ -30,10 +31,24 @@ public class Perfil {
     //@OnetoOne
     @JoinColumn(name = "Cedula")
     private Empleado empleado;
+=======
+import java.util.Calendar;
+import java.util.Date;
+
+//Revisar esta clase que servirá en el Front para la de registrar usuario
+
+public class Perfil {
+
+    private  int id;
+    private String imagen;
+    private String telefono;
+    // el user user
+>>>>>>> 3c16bda67d48528fab7e3755b357a4e66405112f
 
     public Perfil() {
     }
 
+<<<<<<< HEAD
     public Perfil(String id, String imagen, String telefono, Date fechaCreacion, Date fechaActualización, Empleado empleado) {
         Id = id;
         this.imagen = imagen;
@@ -49,6 +64,20 @@ public class Perfil {
 
     public void setId(String id) {
         Id = id;
+=======
+    public Perfil(int id, String imagen, String telefono) {
+        this.id = id;
+        this.imagen = imagen;
+        this.telefono = telefono;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+>>>>>>> 3c16bda67d48528fab7e3755b357a4e66405112f
     }
 
     public String getImagen() {
@@ -59,6 +88,7 @@ public class Perfil {
         this.imagen = imagen;
     }
 
+<<<<<<< HEAD
     public String getTelefono() {
         return telefono;
     }
@@ -90,10 +120,21 @@ public class Perfil {
     public void setEmpleado(Empleado empleado) {
         this.empleado = empleado;
     }
+=======
+    public String getTelefon() {
+        return telefono;
+    }
+
+    public void setTelefon(String telefon) {
+        this.telefono = telefon;
+    }
+
+>>>>>>> 3c16bda67d48528fab7e3755b357a4e66405112f
 
     @Override
     public String toString() {
         return "Perfil{" +
+<<<<<<< HEAD
                 "Id='" + Id + '\'' +
                 ", imagen='" + imagen + '\'' +
                 ", telefono='" + telefono + '\'' +
@@ -104,3 +145,11 @@ public class Perfil {
     }
 }
 
+=======
+                "id=" + id +
+                ", imagen='" + imagen + '\'' +
+                ", telefono='" + telefono + '\'' +
+                '}';
+    }
+}
+>>>>>>> 3c16bda67d48528fab7e3755b357a4e66405112f
