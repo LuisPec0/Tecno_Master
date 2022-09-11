@@ -1,7 +1,9 @@
 package com.tecnomaster.Analisysis_Code.Services;
 
 import com.tecnomaster.Analisysis_Code.Entities.Empresa;
+import com.tecnomaster.Analisysis_Code.Repository.EmpleadoRepositorio;
 import com.tecnomaster.Analisysis_Code.Repository.EmpresaRepository;
+import com.tecnomaster.Analisysis_Code.Repository.MovimientoDineroRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,11 +12,11 @@ import java.util.Optional;
 @Service
 public class EmpresaServices {
     private EmpresaRepository empresaRepo;
-   // private EmpleadoRepository empleadoRepo;
+   private EmpleadoRepositorio empleadoRepo;
 
-    //private MoviemientoDeDineroRepository movimientoRepo;
+    private MovimientoDineroRepository movimientoRepo;
 
-    public EmpresaServices(EmpresaRepository empresaRepo, EmpleadoRepository empleadoRepo, MoviemientoDeDineroRepository movimientoRepo) {
+    public EmpresaServices(EmpresaRepository empresaRepo, EmpleadoRepositorio empleadoRepo, MovimientoDineroRepository movimientoRepo) {
         this.empresaRepo = empresaRepo;
         this.empleadoRepo = empleadoRepo;
         this.movimientoRepo = movimientoRepo;
