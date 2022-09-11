@@ -1,63 +1,86 @@
 package com.tecnomaster.Analisysis_Code.Services;
 import com.tecnomaster.Analisysis_Code.Entities.Empleado;
 import com.tecnomaster.Analisysis_Code.Entities.Empresa;
+import com.tecnomaster.Analisysis_Code.Repository.EmpleadoRepositorio;
+import com.tecnomaster.Analisysis_Code.Repository.EmpresaRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ReflectionUtils;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class EmpleadoServices {
+    private EmpleadoRepositorio repositorio;
+    private EmpresaRepository empresaRepo;
 
-    public EmpleadoServices() {
-        this.datosEmpleado();
-        Empresa emp1 = new Empresa("104542788", "Coca cola s.a", "Cr 20 30 44", "3205412");
+    public EmpleadoServices(EmpleadoRepositorio repositorio, EmpresaRepository empresaRepo) {
+        this.repositorio = repositorio;
+        this.empresaRepo = empresaRepo;
+    }
+    public ArrayList<Empleado> ListarEmpleado()
+    {
+        return (ArrayList<Empleado>) repositorio.findAll();
+
     }
 
-    //Array para simular base de datos
-
-    Empresa emp1 = new Empresa("104542788", "Coca cola s.a", "Cr 20 30 44", "3205412");
-    ArrayList<Empleado> listaEmpleado = new ArrayList<Empleado>();
-
-    public void datosEmpleado() {
-        listaEmpleado.add(new Empleado("Jose Rudas", "rudaslio17@gmail.com", "ADMINISTRADOR", emp1));
-        listaEmpleado.add(new Empleado( "tomas Rudas", "rudaslio17@gmail.com", "ADMINISTRADOR", emp1));
-        listaEmpleado.add(new Empleado("pepe Rudas", "rudaslio17@gmail.com", "ADMINISTRADOR", emp1));
+    public Optional<Empleado> buscarEmpleado(int id)
+    {
+        return  repositorio.findById(id);
     }
 
-
-    //  servico para leer empleados
-    public ArrayList<Empleado> leerEmpleados() {
-        return listaEmpleado;
-    }
-
-    // Servicio para agregar empleado
-    public String agregarEmpleado(Empleado empleado) {
-        listaEmpleado.add(empleado);
-        return "Empleado agregado Exitosamente";
-    }
-
-//   Servicio Eliminar Empleado
-
-    public String eliminarEmpleado(int index) {
-        listaEmpleado.remove(index);
-        return "Empleado eliminado Exitosamente";
-    }
-    //    Servicio para consultar un empleado
-
-    public Empleado consultarEmpleado(int index) {
-        return listaEmpleado.get(index);
+    public  ArrayList<Empleado> buscarNombreEmpleado(String nombreEmpleado)
+    {
+        //return  repositorio.findByNombre(nombre);
+        return repositorio.findByNombreEmpleado(nombreEmpleado);
     }
 
 
-//    Servicio Para actualizar empleado
-    public String actualizarEmpleado(int index, Empleado newEmpleado){
-        listaEmpleado.set(index, newEmpleado);
-        return "actualizacion exitosa";
+    public Empleado agregarEmpleado(int nit,  Empleado empleado)
+    {
+
+        return empresaRepo.findById(nit).map(empresa ->{
+            empleado.setEmpresa(empresa);
+            return repositorio.save(empleado);
+        }).get();
+
+
     }
+
+
+
+
+
+    public Empleado actualizarCampoEmpleado(int id, Map<Object,Object> EmpleadoMap){
+        Empleado empleado=repositorio.findById(id).get();
+
+        EmpleadoMap.forEach((key,value)->{
+            //ojo aqui cambie key string por int
+            Field campo= ReflectionUtils.findField(Empleado.class, (String) key);
+            campo.setAccessible(true);
+            ReflectionUtils.setField(campo, empleado, value);
+        });
+        return repositorio.save(empleado);
+    }
+
+
+
+
+    public String eliminarEmpleado(int id)
+    {
+        if(buscarEmpleado(id).isPresent())
+        {
+            repositorio.deleteById(id);
+            return "Empleado eliminada";
+        }
+        else
+        {
+            return "Empleado no eliminado";
+        }
+
+    }
+
 
 }
-
-
-
-
-

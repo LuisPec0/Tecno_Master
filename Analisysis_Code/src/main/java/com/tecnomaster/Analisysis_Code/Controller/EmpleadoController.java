@@ -6,50 +6,63 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.Optional;
 
 @RestController
-public class EmpleadoController {
-    @Autowired
+public class EmpleadoController
+{
     EmpleadoServices servicio;
 
-    public EmpleadoController(){
-        this.servicio = new EmpleadoServices();
+    public EmpleadoController(EmpleadoServices servicio) {
+        this.servicio = servicio;
+    }
+    //Listar
+    @GetMapping("users")
+    public ArrayList<Empleado> listar()
+    {
+        return servicio.ListarEmpleado();
     }
 
-    //Metodo GET Que Devuelve todos los empleados
-    @GetMapping("/users")
-    public ArrayList<Empleado> leerEmleados(){
-        return this.servicio.leerEmpleados();
+    @GetMapping("users/{id}")
+    public Optional<Empleado> buscarEmpleado(@PathVariable("id") int id)
+    {
+        return servicio.buscarEmpleado(id);
+    }
+    @GetMapping("/BuscarNombreEmpleado/{nombreEmpleado}")
+    public ArrayList<Empleado>  buscarNombreEmpleado(@PathVariable("nombreEmpleado") String nombreEmpleado )
+    {
+        return servicio.buscarNombreEmpleado(nombreEmpleado);
+
     }
 
-    //    Metodo POST Para Agregar Empleados
-    @PostMapping("/prueba")
-    public String agregarEmpleado(@RequestBody Empleado x){
-        return this.servicio.agregarEmpleado(x);
+
+    //Agregar
+    @PostMapping("/users/{nit}")
+    public Empleado agregarEmpleado(@PathVariable("nit") int nit, @RequestBody Empleado empleado){
+        return servicio.agregarEmpleado(nit,empleado);
     }
 
-//    Metodo DELETE para eliminar empleado
 
-    @DeleteMapping("/user/{id}")
-    public String eliminarEmpleado(@PathVariable("id") Integer index){
-        return this.servicio.eliminarEmpleado(index);
+
+    @PatchMapping("/users/{id}")
+    public Empleado actualizarCampoEmpleado(@PathVariable("id") int id, @RequestBody Map<Object,Object> EmpleadoMap)
+    {
+        return servicio.actualizarCampoEmpleado(id,EmpleadoMap);
     }
 
-//    Metodo PATCH para Actualizar empleado
-      @PatchMapping("/user/{id}")
-      public String actualizarEmpleado(@PathVariable("id") Integer index, @RequestBody Empleado newEmpleado){
-        return this.servicio.actualizarEmpleado(index,newEmpleado);
-      }
 
 
-//    Metod0 GET para consultar un solo empledo
-     @GetMapping("/user/{id}")
-    public Empleado mostrarEmpleado(@PathVariable("id") Integer index){
-        return this.servicio.consultarEmpleado(index);
-      }
+
+
+    @DeleteMapping("/users/{id}")
+    public String eliminarEmpleado(@PathVariable("id") int id)
+    {
+        return servicio.eliminarEmpleado(id);
+
+    }
+
+
 
 
 }
-
-
-
