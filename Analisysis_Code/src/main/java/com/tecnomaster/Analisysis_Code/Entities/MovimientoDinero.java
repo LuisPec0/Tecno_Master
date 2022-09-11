@@ -1,48 +1,67 @@
 package com.tecnomaster.Analisysis_Code.Entities;
 
-<<<<<<< HEAD
-import java.util.Calendar;
 
-public class MovimientoDinero {
-    //Atributos
-
-    private float monto;
-
-=======
+import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name = "MovimientoDinero")
 public class MovimientoDinero {
-    //Atributos
+    @Id
+    @Column(unique = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(nullable = false, length = 30)
     private double monto;
->>>>>>> 304e7fd67161b49ff6963865bb2b8d8a8384864f
+
+    @Column(nullable = false, length = 5)
     private boolean tipoMonto;
+
+    @Column(nullable = false, length = 250)
     private String conceptoMovimiento;
 
-
+    @ManyToOne
+    @JoinColumn(name="nombre")
     private Empresa empresa; //Empresa es un objeto de la clase Empresa *
 
-
+    @ManyToOne
+    @JoinColumn(name="nombreEmpleado")
     private Empleado usuario; // Usuario es un objeto de la clase empleado
-    //@Temporal(TemporalType.DATE)
-    //@Column(nullable = false)
+
+    @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
     private Date fechaCreacion;
-    //@Temporal(TemporalType.DATE)
-    //@Column(nullable = false)
+
+    @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
     private Date fechaActualizacion;
 
-    //Constructor
-<<<<<<< HEAD
-    public MovimientoDinero(float monto, String conceptoMovimiento, Empleado usuario) {
-=======
-    public MovimientoDinero(double monto, String conceptoMovimiento, Empleado usuario, Date fechaCreacion, Date fechaActualizacion) {
->>>>>>> 304e7fd67161b49ff6963865bb2b8d8a8384864f
+    @PrePersist
+    public void prePersist(){
+        this.fechaCreacion = new Date();
+    }
+
+    @PrePersist
+    public void prePersistActualizacion(){
+        this.fechaActualizacion = new Date();
+    }
+
+    //    Construtor Vacio
+    public MovimientoDinero() {
+    }
+
+    //    Constructor con parametros
+    public MovimientoDinero(int id, double monto, String conceptoMovimiento, Empresa empresa, Empleado usuario, Date fechaCreacion, Date fechaActualizacion) {
+        this.id = id;
         this.monto = monto;
-        
+        this.empresa = empresa;
+
         if(monto < 0){
-            tipoMonto = false;
+            this.tipoMonto = false;
         }else{
-            tipoMonto = true;
+            this.tipoMonto = true;
         }
         this.conceptoMovimiento = conceptoMovimiento;
         this.usuario = usuario;
@@ -53,6 +72,22 @@ public class MovimientoDinero {
 
     //Getter y Setters
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+
     public double getMonto() {
         return monto;
     }
@@ -60,8 +95,6 @@ public class MovimientoDinero {
     public void setMonto(double monto) {
         this.monto = (float) monto;
     }
-
-
 
     public String getConceptoMovimiento() {
         return conceptoMovimiento;
@@ -114,11 +147,7 @@ public class MovimientoDinero {
                 ", usuario=" + usuario.getNombreEmpleado() +
                 '}';
 
-  
-    }
 
-    public void agregarMonto(double nuevoMonto){
-        monto += nuevoMonto;
     }
 
 }
