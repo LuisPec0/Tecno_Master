@@ -1,55 +1,67 @@
 package com.tecnomaster.Analisysis_Code.Services;
 
 
-import com.tecnomaster.Analisysis_Code.Entities.Empleado;
-
-import com.tecnomaster.Analisysis_Code.Entities.Empresa;
 import com.tecnomaster.Analisysis_Code.Entities.MovimientoDinero;
+import com.tecnomaster.Analisysis_Code.Repository.MovimientoDineroRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ReflectionUtils;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.Optional;
 
 
 @Service
 public class MovimientoDineroServicios {
 
-    ArrayList<MovimientoDinero> lista  = new ArrayList<MovimientoDinero>();
+    //Instanciar Repositorio
+    @Autowired
+    MovimientoDineroRepository repository;
 
-    public MovimientoDineroServicios() {
-        this.datosiniciales();
+    //Servicio para consultar todos los movimientos de dinero por empresa
+    public ArrayList<MovimientoDinero> buscarMovimientosDinero(String nombreEmpresa){
+        return (ArrayList<MovimientoDinero>) repository.findByEmpresa(nombreEmpresa);
     }
 
-    public ArrayList<MovimientoDinero> getLista() {
-        return lista;
+
+    //   //Servicio para consultar 1 solo movimientos de dinero por ID
+    public Optional<MovimientoDinero> consultaMovimientoDinero(int id){
+        return repository.findById(id);
     }
 
-    public void datosiniciales(){
-        Empresa miEmpresa = new Empresa("Tech Store", "Avenida 28", "3445676", "123456");
 
-        Empleado empleado=new Empleado("Jose Rudas","rudaslio17@gmail.com","ADMINISTRADOR", miEmpresa);
 
-        Empleado Empleado;
-        lista.add(new MovimientoDinero(250000,"consigncion", empleado));
-        lista.add(new MovimientoDinero(300000,"Retiro",empleado));
-        lista.add(new MovimientoDinero(100000,"consignacion", empleado));
-    }
-
-    public MovimientoDinero buscarMovimientoDinero(int index){
-        return lista.get(index);
-   }
-
-    public String crearMovimientoDinero(MovimientoDinero md){
-        lista.add(md);
+    //Servicio para crear movimientos de dinero
+    public String crearMovimientoDinero(MovimientoDinero newmd){
+        repository.save(newmd);
         return "Movimiento Registrado Exitosamente";
     }
 
-    public String actualizarMovimientoDinero(int index, MovimientoDinero md){
-        lista.set(index, md);
-        return "Movimiento Actualizado con Exito";
+
+//    Servicio para actualizar movimiento de dinero
+
+    public String actualizarMovimientoDinero(int id, Map<Object, Object> actuMD){
+        if (consultaMovimientoDinero(id).isPresent()){
+            MovimientoDinero md = repository.findById(id).get();
+            actuMD.forEach((key, value)->{;
+                Field campo= ReflectionUtils.findField(MovimientoDinero.class,(String) key);
+                campo.setAccessible(true);
+                ReflectionUtils.setField(campo, md, value);
+            });
+            repository.save(md);
+            return "Movimiento Actualizado con Exito";
+        }else {return "Movimiento de dinero no existe";}
     }
-    public String eliminarMovimientoDinero(int index){
-        lista.remove(index);
-        return "El Movimiento fue Eliminado con Exito";
+
+//    Servicio para eliminar movimiento de dinero
+
+    public String eliminarMd(int id){
+        if(consultaMovimientoDinero(id).isPresent()){
+            repository.deleteById(id);
+            return "Movimiento Eliminado Correctamente";
+        }else{return "Movimiento de dinero no existe";}
     }
 
 }
