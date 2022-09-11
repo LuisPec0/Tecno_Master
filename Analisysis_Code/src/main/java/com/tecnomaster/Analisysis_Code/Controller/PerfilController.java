@@ -1,62 +1,43 @@
 package com.tecnomaster.Analisysis_Code.Controller;
 
-<<<<<<< HEAD
-import com.tecnomaster.Analisysis_Code.Entities.Perfil;
-import com.tecnomaster.Analisysis_Code.Services.PerfilServices;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-=======
-
 
 import com.tecnomaster.Analisysis_Code.Entities.Perfil;
 import com.tecnomaster.Analisysis_Code.Services.PerfilServicios;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
->>>>>>> 3c16bda67d48528fab7e3755b357a4e66405112f
 
 import java.util.ArrayList;
+import java.util.Optional;
+
 
 @RestController
 public class PerfilController {
 
-<<<<<<< HEAD
-    private PerfilServices services;
+    private PerfilServicios servicios;
 
-    public PerfilController(PerfilServices services) {
-        this.services = services;
+    public PerfilController(PerfilServicios servicios) {
+        this.servicios = servicios;
     }
 
-    @GetMapping("/users")
-    public ArrayList<Perfil> usuarios(){
-        return services.mostrarUsuarios();
-=======
-    @Autowired
-    PerfilServicios services;
-
-
-    public PerfilController(){
-        this.services = new PerfilServicios();
+    @GetMapping("/MostrarUsuarios")
+    public ArrayList<Perfil>listar(){
+        return servicios.mostrarusuarios();
     }
 
-@GetMapping("/perfil")
-    public ArrayList<Perfil> leerPerfil(){
-        return this.services.leerPerfil();
+    @GetMapping("/MostrarUsuarios/{Id}")
+    public Optional<Perfil> buscarUsuarios(@PathVariable("Id")int Id){
+        return servicios.buscarUsuario(Id);
     }
 
-    @PostMapping("/perfil")
-    public String agregarPerfil(@RequestBody Perfil p){
-        return this.services.agregarPerfil(p);
+    @PostMapping("/AgregarUsuario")
+    public String agregarUsuario(@RequestBody Perfil perfil){
+        return servicios.AgregarUsuario(perfil);
     }
 
-    @DeleteMapping("/perfil/{id}")
-    public String eliminarPerfil(@PathVariable("id") Integer index ){
-        return this.services.eliminarPerfil(index);
+    @DeleteMapping("/eliminarUsuario/{Id}")
+    public String EliminarUsuario(@PathVariable("Id") int Id){
+        return servicios.EliminarLibro(Id);
     }
-
-    @PatchMapping("/perfil/{id}")
-    public String actualizarPerfil(@PathVariable("id") Integer index, @RequestBody Perfil newPerfil){
-        return  this.services.actualizarPerfil(index,newPerfil);
->>>>>>> 3c16bda67d48528fab7e3755b357a4e66405112f
-    }
-
 }
+
+
+
