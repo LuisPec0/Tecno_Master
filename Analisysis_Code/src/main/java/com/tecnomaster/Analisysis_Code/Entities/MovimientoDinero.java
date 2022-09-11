@@ -9,8 +9,8 @@ import java.util.Date;
 @Table(name = "MovimientoDinero")
 public class MovimientoDinero {
     @Id
-    @Column(unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true)
     private int id;
 
     @Column(nullable = false, length = 30)
@@ -23,11 +23,11 @@ public class MovimientoDinero {
     private String conceptoMovimiento;
 
     @ManyToOne
-    @JoinColumn(name="nombre")
+    @JoinColumn(name="id")
     private Empresa empresa; //Empresa es un objeto de la clase Empresa *
 
     @ManyToOne
-    @JoinColumn(name="nombreEmpleado")
+    @JoinColumn(name="id")
     private Empleado usuario; // Usuario es un objeto de la clase empleado
 
     @Temporal(TemporalType.DATE)

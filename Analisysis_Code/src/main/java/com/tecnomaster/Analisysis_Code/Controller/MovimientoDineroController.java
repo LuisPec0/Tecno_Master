@@ -17,8 +17,8 @@ public class MovimientoDineroController {
     MovimientoDineroServicios services;
 
     @GetMapping("/enterprises/{id}/movements")
-    public ArrayList<MovimientoDinero> ConsultarMovimiento(@PathVariable("id") String nombreEmpresa){
-        return this.services.buscarMovimientosDinero(nombreEmpresa);
+    public ArrayList<MovimientoDinero> ConsultarMovimiento(@PathVariable("id") int idEmpresa){
+        return this.services.buscarMovimientosDinero(idEmpresa);
     }
 
 //    Consultar 1 movimiento de Dinero

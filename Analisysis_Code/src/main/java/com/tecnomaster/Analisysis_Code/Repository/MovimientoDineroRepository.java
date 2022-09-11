@@ -11,4 +11,4 @@ import java.util.ArrayList;
 @Repository
 public interface MovimientoDineroRepository extends JpaRepository<MovimientoDinero, Integer> {
 
-    ArrayList<MovimientoDinero> findByEmpresa(String nombre);
+    ArrayList<MovimientoDinero> findByEmpresa(Integer id);

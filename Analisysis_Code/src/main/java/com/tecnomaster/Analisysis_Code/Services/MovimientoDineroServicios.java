@@ -21,8 +21,8 @@ public class MovimientoDineroServicios {
     MovimientoDineroRepository repository;
 
     //Servicio para consultar todos los movimientos de dinero por empresa
-    public ArrayList<MovimientoDinero> buscarMovimientosDinero(String nombreEmpresa){
-        return (ArrayList<MovimientoDinero>) repository.findByEmpresa(nombreEmpresa);
+    public ArrayList<MovimientoDinero> buscarMovimientosDinero(int idEmpresa){
+        return (ArrayList<MovimientoDinero>) repository.findByEmpresa(idEmpresa);
     }
 
 
