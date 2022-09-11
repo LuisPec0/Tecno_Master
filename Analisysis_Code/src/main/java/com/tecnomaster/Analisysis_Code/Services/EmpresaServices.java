@@ -1,49 +1,56 @@
 package com.tecnomaster.Analisysis_Code.Services;
 
 import com.tecnomaster.Analisysis_Code.Entities.Empresa;
+import com.tecnomaster.Analisysis_Code.Repository.EmpresaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Optional;
+
 @Service
 public class EmpresaServices {
+    private EmpresaRepository empresaRepo;
+   // private EmpleadoRepository empleadoRepo;
 
-    ArrayList<Empresa> enterprise = new ArrayList<Empresa>();
+    //private MoviemientoDeDineroRepository movimientoRepo;
 
-    public EmpresaServices(){
-        this.datosIniciales();
-    }
-//---------------ArrayList Prueba Metodos Empresa---------------
-
-    public ArrayList<Empresa> getEnterprise() {
-        return enterprise;
-    }
-    //GET RUTA ENTERPRISE
-    public void datosIniciales(){
-        enterprise.add(new Empresa("Tech2","Avenida 34","123123","111122223"));
-        enterprise.add(new Empresa("Tech3","Avenida 89","321321","333322123"));
-        enterprise.add(new Empresa("Tech4","Avenida 45","321123","123123123"));
-        enterprise.add(new Empresa("Tech5","Avenida 98","312332","321231312"));
-        enterprise.add(new Empresa("Tech6","Avenida 12","121233","123123123"));
+    public EmpresaServices(EmpresaRepository empresaRepo, EmpleadoRepository empleadoRepo, MoviemientoDeDineroRepository movimientoRepo) {
+        this.empresaRepo = empresaRepo;
+        this.empleadoRepo = empleadoRepo;
+        this.movimientoRepo = movimientoRepo;
     }
 
-    //POST RUTA ENTERPRISE
+    //listar empresas
+    public ArrayList<Empresa> listEnterprise(){
+        return (ArrayList<Empresa>) empresaRepo.findAll();
+
+    }
+    public Optional <Empresa> buscarEmpresa(int id){
+        return empresaRepo.findById(id);
+    }
+
+
+    //POST ENTERPRISE
     public String createEnterprise(Empresa e){
-        enterprise.add(e);
+        empresaRepo.save(e);
         return "Empresa creada exitosamente";
     }
 
-    //GET RUTA ENTERPRISE/ID
-    public Empresa buscarEmpresa(int index){
-        return enterprise.get(index);
+    //
+    public String actualizarEmpresa (Integer index, Empresa e){
+        empresaRepo.save(e);
+        return "Empresa actualizada";
     }
-    //PATCH RUTA ENTERPRISE/ID
-    public String actualizarEmpresa(int index, Empresa e){
-        enterprise.set(index, e);
-        return "Empresa actualizada exitosamente";
-    }
-    //DEL RUTA ENTERPRISE/ID
-    public String eliminarEmpresa(int index){
-        enterprise.remove(index);
-        return "Empresa eliminada exitosamente";
-    }
+
+    //DEL RUTA ENTERPRISE/ID);
+    public String eliminarEmpresa(int id){
+        if(buscarEmpresa(id).isPresent()) {
+            empresaRepo.deleteById(id);
+            return "Empresa eliminada";
+        } else{
+                return"Empresa no existe";
+            }
+        }
+
+
 }
