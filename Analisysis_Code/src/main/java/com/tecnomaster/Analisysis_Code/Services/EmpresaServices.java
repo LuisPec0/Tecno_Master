@@ -1,53 +1,40 @@
 package com.tecnomaster.Analisysis_Code.Services;
 
 import com.tecnomaster.Analisysis_Code.Entities.Empresa;
-import com.tecnomaster.Analisysis_Code.Repository.EmpleadoRepositorio;
 import com.tecnomaster.Analisysis_Code.Repository.EmpresaRepository;
-import com.tecnomaster.Analisysis_Code.Repository.MovimientoDineroRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 @Service
 public class EmpresaServices {
-    private EmpresaRepository empresaRepo;
-   private EmpleadoRepositorio empleadoRepo;
+   @Autowired
+    EmpresaRepository empresaRepository;
 
-    private MovimientoDineroRepository movimientoRepo;
-
-    public EmpresaServices(EmpresaRepository empresaRepo, EmpleadoRepositorio empleadoRepo, MovimientoDineroRepository movimientoRepo) {
-        this.empresaRepo = empresaRepo;
-        this.empleadoRepo = empleadoRepo;
-        this.movimientoRepo = movimientoRepo;
-    }
 
     //listar empresas
     public ArrayList<Empresa> listEnterprise(){
-        return (ArrayList<Empresa>) empresaRepo.findAll();
+        return (ArrayList<Empresa>) empresaRepository.findAll();
 
     }
-    public Optional <Empresa> buscarEmpresa(int id){
-        return empresaRepo.findById(id);
+    public  Empresa buscarEmpresa(int id){
+        return empresaRepository.findById(id).get();
     }
 
 
     //POST ENTERPRISE
-    public String createEnterprise(Empresa e){
-        empresaRepo.save(e);
-        return "Empresa creada exitosamente";
+    public Empresa create_ActualizarEnterprise(Empresa empresa){
+        Empresa emp=empresaRepository.save(empresa);
+        return emp;
     }
 
-    //
-    public String actualizarEmpresa (Integer index, Empresa e){
-        empresaRepo.save(e);
-        return "Empresa actualizada";
-    }
+
 
     //DEL RUTA ENTERPRISE/ID);
     public String eliminarEmpresa(int id){
-        if(buscarEmpresa(id).isPresent()) {
-            empresaRepo.deleteById(id);
+        if(empresaRepository.findById(id).isPresent()) {
+            empresaRepository.deleteById(id);
             return "Empresa eliminada";
         } else{
                 return"Empresa no existe";

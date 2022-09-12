@@ -10,7 +10,7 @@ import org.springframework.util.ReflectionUtils;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.Optional;
+
 
 
 @Service
@@ -18,39 +18,41 @@ public class MovimientoDineroServicios {
 
     //Instanciar Repositorio
     @Autowired
-    MovimientoDineroRepository repository;
+    MovimientoDineroRepository movimientoDineroRepository;
+
+
 
     //Servicio para consultar todos los movimientos de dinero por empresa
     public ArrayList<MovimientoDinero> buscarMovimientosDinero(int idEmpresa){
-        return (ArrayList<MovimientoDinero>) repository.findByEmpresa(idEmpresa);
+        return (ArrayList<MovimientoDinero>) movimientoDineroRepository.findByEmpresa(idEmpresa);
     }
 
 
     //   //Servicio para consultar 1 solo movimientos de dinero por ID
-    public Optional<MovimientoDinero> consultaMovimientoDinero(int id){
-        return repository.findById(id);
+    public MovimientoDinero consultaMovimientoDineroID(int id){
+        return movimientoDineroRepository.findById(id).get();
     }
 
 
 
     //Servicio para crear movimientos de dinero
-    public String crearMovimientoDinero(MovimientoDinero newmd){
-        repository.save(newmd);
-        return "Movimiento Registrado Exitosamente";
+    public MovimientoDinero crearMovimientoDinero(MovimientoDinero newmd){
+        MovimientoDinero nmd=movimientoDineroRepository.save(newmd);
+        return nmd;
     }
 
 
 //    Servicio para actualizar movimiento de dinero
 
     public String actualizarMovimientoDinero(int id, Map<Object, Object> actuMD){
-        if (consultaMovimientoDinero(id).isPresent()){
-            MovimientoDinero md = repository.findById(id).get();
-            actuMD.forEach((key, value)->{;
+        if (movimientoDineroRepository.findById(id).isPresent()){
+            MovimientoDinero md = movimientoDineroRepository.findById(id).get();
+            actuMD.forEach((key, value)->{
                 Field campo= ReflectionUtils.findField(MovimientoDinero.class,(String) key);
                 campo.setAccessible(true);
                 ReflectionUtils.setField(campo, md, value);
             });
-            repository.save(md);
+            movimientoDineroRepository.save(md);
             return "Movimiento Actualizado con Exito";
         }else {return "Movimiento de dinero no existe";}
     }
@@ -58,8 +60,8 @@ public class MovimientoDineroServicios {
 //    Servicio para eliminar movimiento de dinero
 
     public String eliminarMd(int id){
-        if(consultaMovimientoDinero(id).isPresent()){
-            repository.deleteById(id);
+        if(movimientoDineroRepository.findById(id).isPresent()){
+            movimientoDineroRepository.deleteById(id);
             return "Movimiento Eliminado Correctamente";
         }else{return "Movimiento de dinero no existe";}
     }
