@@ -6,50 +6,45 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 @RestController
 public class EmpresaController {
     @Autowired
-    private EmpresaServices services;
+    EmpresaServices empresaServices;
 
-    public EmpresaController(EmpresaServices services) {
-        this.services = services;
-    }
-    //Constructor
 
-    //Get enterprises
+    //Ver todas las empresas -- Funciona correctamente
     @GetMapping("/enterprises")
     public ArrayList<Empresa> list(){
-        return services.listEnterprise();
+        return empresaServices.listEnterprise();
     }
 
-    //Get enterprises/id
-    @GetMapping("/enterprises/{id}")
-    public Optional<Empresa> buscarEmpresa(@PathVariable("id") int id){
-        return services.buscarEmpresa(id);
+    //Buscar empresa por ID -- Funciona Correctamente
+    @GetMapping(path = "enterprises/{id}")
+    public Empresa buscarEmpresa(@PathVariable("id") int id){
+        return this.empresaServices.buscarEmpresa(id);
     }
 
-    //Post enterprises
+    //Guardar o Actualizar una nueva Empresa -- Funciona Correctamente
     @PostMapping("/enterprises")
-    public String createEnterprise(@RequestBody Empresa e){
-        return services.createEnterprise(e);
+    public Empresa create_ActualizarEnterprise(@RequestBody Empresa emp){
+        return this.empresaServices.create_ActualizarEnterprise(emp);
     }
 
-    //Patch enterprises/id
+    //Modificar Campos de una empresa -- Revisar Este no sirve
     @PatchMapping("/enterprises/{id}")
-    public String actualizarEmpresa(@PathVariable("id") Integer index, @RequestBody Empresa e){
-        return services.actualizarEmpresa(index,e);
+    public Empresa create_ActualizarEnterprise(@PathVariable("id") Integer id, @RequestBody Empresa newempresa){
+        Empresa emp = empresaServices.buscarEmpresa(id);
+        emp.setNombre(emp.getNombre());
+        emp.setDireccion(emp.getDireccion());
+        emp.setTelefono(emp.getTelefono());
+        emp.setNit(emp.getNit());
+        return empresaServices.create_ActualizarEnterprise(emp);
     }
 
-    //Del enterprises/id
+    //Eliminar una empresa por medio del ID -- Funciona Correctamente
     @DeleteMapping("/enterprises/{id}")
     public String eliminarEmpresa(@PathVariable("id") int id){
-        return services.eliminarEmpresa(id);
+        return empresaServices.eliminarEmpresa(id);
     }
-
-
-
-
-
 }
