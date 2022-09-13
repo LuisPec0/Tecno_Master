@@ -9,36 +9,52 @@ import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Map;
-
+import java.util.Optional;
 
 
 @Service
 public class MovimientoDineroServicios {
 
+    //Servico de empleado
+    @Autowired
+    EmpleadoServices serviEmpleado;
+
     //Instanciar Repositorio
     @Autowired
     MovimientoDineroRepository movimientoDineroRepository;
 
+    //Todos los movimientos
+    public ArrayList<MovimientoDinero> movimientos(){
+        return (ArrayList<MovimientoDinero>) movimientoDineroRepository.findAll();
+    }
+
+    //Servicio para consultar todos los movimientos de dinero por Empleado
+    public ArrayList<MovimientoDinero> buscarMovimientosDinero(Integer idEmpleado){
+        return (ArrayList<MovimientoDinero>) movimientoDineroRepository.buscarPorUsuario(idEmpleado);
+    }
 
 
     //Servicio para consultar todos los movimientos de dinero por empresa
-    public ArrayList<MovimientoDinero> buscarMovimientosDinero(int idEmpresa){
-        return (ArrayList<MovimientoDinero>) movimientoDineroRepository.findByEmpresa(idEmpresa);
+    public ArrayList<MovimientoDinero> buscarPorEmpresa(Integer idEmpleado){
+        return (ArrayList<MovimientoDinero>) movimientoDineroRepository.buscarPorEmpresa(idEmpleado);
     }
 
 
     //   //Servicio para consultar 1 solo movimientos de dinero por ID
-    public MovimientoDinero consultaMovimientoDineroID(int id){
-        return movimientoDineroRepository.findById(id).get();
+    public Optional<MovimientoDinero> consultaMovimientoDineroID(int id){
+        return movimientoDineroRepository.findById(id);
     }
 
 
 
     //Servicio para crear movimientos de dinero
-    public MovimientoDinero crearMovimientoDinero(MovimientoDinero newmd){
-        MovimientoDinero nmd=movimientoDineroRepository.save(newmd);
-        return nmd;
+    public String crearMovimientoDinero(MovimientoDinero newmd, int idEmpleado){
+        newmd.setUsuario(serviEmpleado.buscarEmpleado(idEmpleado).get());
+        newmd.setEmpresa(serviEmpleado.buscarEmpleado(idEmpleado).get().getEmpresa());
+        movimientoDineroRepository.save(newmd);
+        return "Movimiento creado Exitosamente";
     }
 
 
@@ -52,6 +68,8 @@ public class MovimientoDineroServicios {
                 campo.setAccessible(true);
                 ReflectionUtils.setField(campo, md, value);
             });
+
+            md.setFechaActualizacion(new Date());
             movimientoDineroRepository.save(md);
             return "Movimiento Actualizado con Exito";
         }else {return "Movimiento de dinero no existe";}
