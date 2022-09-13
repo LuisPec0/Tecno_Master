@@ -64,4 +64,13 @@ public class EmpleadoServices {
 
     }
 
+    public String agregarEmpleado(Empleado empleado){
+        if(!buscarEmpleado(empleado.getId()).isPresent()) {
+            empleadoRepositorio.save(empleado);
+            return "Empresa  Registrado exitosamente.";
+        }else{
+            return "La Empresa ya existe. " ;
+        }
+    }
+
 }
