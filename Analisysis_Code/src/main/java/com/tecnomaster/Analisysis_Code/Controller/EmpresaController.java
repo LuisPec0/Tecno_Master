@@ -33,13 +33,13 @@ public class EmpresaController {
 
     //Modificar Campos de una empresa -- Revisar Este no sirve
     @PatchMapping("/enterprises/{id}")
-    public Empresa create_ActualizarEnterprise(@PathVariable("id") Integer id, @RequestBody Empresa newempresa){
-        Empresa emp = empresaServices.buscarEmpresa(id);
+    public Empresa create_ActualizarEnterprise(@PathVariable("id") Integer id, @RequestBody Empresa empresa){
+      /*  Empresa emp = empresaServices.buscarEmpresa(id);
         emp.setNombre(emp.getNombre());
         emp.setDireccion(emp.getDireccion());
         emp.setTelefono(emp.getTelefono());
-        emp.setNit(emp.getNit());
-        return empresaServices.create_ActualizarEnterprise(emp);
+        emp.setNit(emp.getNit());*/
+        return empresaServices.create_ActualizarEnterprise(empresa);
     }
 
     //Eliminar una empresa por medio del ID -- Funciona Correctamente
