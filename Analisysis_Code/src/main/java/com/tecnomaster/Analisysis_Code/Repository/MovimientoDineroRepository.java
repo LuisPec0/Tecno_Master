@@ -11,13 +11,11 @@ import java.util.ArrayList;
 
 @Repository
 public interface MovimientoDineroRepository extends JpaRepository<MovimientoDinero, Integer> {
-    //Método para filtrar movimientos por empleado
-    @Query(value = "select * from MovimientosDinero where id= ?1", nativeQuery = true)
-    public abstract ArrayList<MovimientoDinero> findByEmpleado(Integer id);
+    @Query(value ="select * from movimiento_dinero where empleado_id= ?", nativeQuery = true)
+    ArrayList<MovimientoDinero> buscarPorUsuario(Integer id);
 
-    //Método para filtrar movimientos por empresa
-    @Query(value = "select * from MovimientosDinero whre empleado_id in (select id from empleado where id= ?1", nativeQuery = true)
 
-    public abstract ArrayList<MovimientoDinero> findByEmpresa(Integer id);
+    @Query(value ="select * from movimiento_dinero where empresa= ?", nativeQuery = true)
+    ArrayList<MovimientoDinero> buscarPorEmpresa(Integer id);
 
 }

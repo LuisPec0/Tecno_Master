@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.Optional;
 
 
 @RestController
@@ -15,41 +17,49 @@ public class MovimientoDineroController {
     MovimientoDineroServicios movimientoDineroServicio;
 
 
-    //Listar movimientos -- No funciona
+    //Listar Movimientos por empleado ---OK
+    @GetMapping("/users/{id}/movements")
+    public ArrayList<MovimientoDinero> consultaPorUsuarios(@PathVariable("id") Integer idEmpleado){
+        return this.movimientoDineroServicio.buscarMovimientosDinero(idEmpleado);
+    }
+
+    //Listar Movimientos por Empresa ---OK
     @GetMapping("/enterprises/{id}/movements")
-    public ArrayList<MovimientoDinero> ConsultarMovimiento(@PathVariable("id") int idEmpresa){
+    public ArrayList<MovimientoDinero> consultaPorEmpresa(@PathVariable("id") Integer idEmpresa){
         return this.movimientoDineroServicio.buscarMovimientosDinero(idEmpresa);
     }
 
-//    Consultar 1 movimiento de Dinero por ID -- Revisar sieste Get lo dejamos dado que no nos lo están pidiendo.
 
+    //Listar todos los movimiento sin filtros ---OK
+    @GetMapping("/movements")
+    public ArrayList<MovimientoDinero> movimientos(){
+        return movimientoDineroServicio.movimientos();
+    }
+
+    //Listar Movimiento por su id ---OK
     @GetMapping("/movements/{id}")
-    public MovimientoDinero cunsultarMovimiento(@PathVariable("id") int id){
+    public Optional<MovimientoDinero> cunsultarMovimiento(@PathVariable("id") int id){
         return this.movimientoDineroServicio.consultaMovimientoDineroID(id);
     }
 
 
-    //    Crear Movimiento de Dinero -- funciona correctmente al crear el movimineto - pero no muestra el usuario que lo hizo
-    @PostMapping("/enterprises/{id}/movements")
-    public  MovimientoDinero crearMovimientoDinero (@PathVariable("id") int id, @RequestBody MovimientoDinero movimiento){
-        return movimientoDineroServicio.crearMovimientoDinero(movimiento);
+    // Crear movimiento desde usuarios ---OK
+    @PostMapping("/users/{id}/movements")
+    public  String crearMovimientoDinero (@PathVariable("id") int idEmpleado, @RequestBody MovimientoDinero movimiento){
+        return movimientoDineroServicio.crearMovimientoDinero(movimiento, idEmpleado);
     }
 
 
-    //    Actualizar Movimiento de Dinero *Toca Revisar la ruta no es la misma que piden en el pdf* -- No funciona no actualiza
+    // Actualizar movimiento (Solo se actualiza Monto y Concepto... y se pone la fecha de forma automatica)
     @PatchMapping("/movements/{id}")
-    public MovimientoDinero actualizar(@PathVariable("id") int idMd, @RequestBody MovimientoDinero mDinero){
-        MovimientoDinero mov=movimientoDineroServicio.consultaMovimientoDineroID(idMd);
-        mov.setConcepto(mov.getConcepto());
-        mov.setMonto(mov.getMonto());
-        mov.setUsuario(mov.getUsuario());
-        return movimientoDineroServicio.crearMovimientoDinero(mov);
+    public String actualizar(@PathVariable("id") int idMd, @RequestBody Map<Object, Object> newMD){
+        return movimientoDineroServicio.actualizarMovimientoDinero(idMd, newMD);
 
     }
 
-    //    Eliminar Movimiento de dinero *Toca Revisar la ruta no es la misma que piden en el pdf* -- Funciona Correctamente
+    // Eliminar Movimiento ---OK
     @DeleteMapping("/movements/{id}")
-    public String eliminarMovimientoDinero (@PathVariable("id") Integer index){
+    public String eliminarMovimientoDinero (@PathVariable("id") int index){
         return this.movimientoDineroServicio.eliminarMd(index);
     }
 
