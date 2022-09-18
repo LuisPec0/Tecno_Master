@@ -21,11 +21,11 @@ public class MovimientoDinero {
     private String concepto;
 
     @ManyToOne
-    @JoinColumn(name="empleado_id")
+    @JoinColumn(name="usuario", referencedColumnName = "id", nullable = false)
     private Empleado usuario;
 
     @ManyToOne
-    @JoinColumn(name="empresa")
+    @JoinColumn(name="empresa", referencedColumnName = "id", nullable = false)
     private Empresa empresa;
 
     @Temporal(TemporalType.DATE)

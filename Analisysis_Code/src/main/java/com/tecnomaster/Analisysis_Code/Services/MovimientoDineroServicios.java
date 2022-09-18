@@ -32,13 +32,13 @@ public class MovimientoDineroServicios {
 
     //Servicio para consultar todos los movimientos de dinero por Empleado
     public ArrayList<MovimientoDinero> buscarMovimientosDinero(Integer idEmpleado){
-        return (ArrayList<MovimientoDinero>) movimientoDineroRepository.buscarPorUsuario(idEmpleado);
+        return (ArrayList<MovimientoDinero>) movimientoDineroRepository.findByUsuarioId(idEmpleado);
     }
 
 
     //Servicio para consultar todos los movimientos de dinero por empresa
     public ArrayList<MovimientoDinero> buscarPorEmpresa(Integer idEmpleado){
-        return (ArrayList<MovimientoDinero>) movimientoDineroRepository.buscarPorEmpresa(idEmpleado);
+        return (ArrayList<MovimientoDinero>) movimientoDineroRepository.findByEmpresaId(idEmpleado);
     }
 
 

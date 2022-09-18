@@ -11,11 +11,11 @@ import java.util.ArrayList;
 
 @Repository
 public interface MovimientoDineroRepository extends JpaRepository<MovimientoDinero, Integer> {
-    @Query(value ="select * from movimiento_dinero where empleado_id= ?", nativeQuery = true)
-    ArrayList<MovimientoDinero> buscarPorUsuario(Integer id);
+    //@Query(value ="select * from movimiento_dinero where empleado= ?", nativeQuery = true)
+    ArrayList<MovimientoDinero> findByUsuarioId(Integer id);
 
 
-    @Query(value ="select * from movimiento_dinero where empresa= ?", nativeQuery = true)
-    ArrayList<MovimientoDinero> buscarPorEmpresa(Integer id);
+    //@Query(value ="select * from movimiento_dinero where empresa= ?", nativeQuery = true)
+    ArrayList<MovimientoDinero> findByEmpresaId(Integer id);
 
 }
