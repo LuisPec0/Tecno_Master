@@ -58,6 +58,11 @@ public class EmpleadoController
         return empleadoServices.eliminarEmpleado(id);
 
     }
+    @PostMapping("/users")
+    public String agregarEmpleado(@RequestBody Empleado empleado)
+    {
+        return empleadoServices.agregarEmpleado(empleado);
+    }
 
 
 
