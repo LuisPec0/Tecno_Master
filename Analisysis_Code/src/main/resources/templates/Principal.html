@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TecnoMaster</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/11e5fb4efb.js" crossorigin="anonymous"></script>
+    <script src="js/index.js" defer></script>
+    <link rel="stylesheet" href="css/estilos2.css">
+
+</head>
+
+<body>
+    <div id="barraS" >
+        <div class="ContIzq  ">
+           
+           <div id="LogoX2"><img src="img/logo43.png" alt="" class="img-fluid"><a href="/Principal"><i class="tc">Tecno Master</i><i class="tm">TM</i></a></div>
+             <div class="barra1"> <i class="fa-solid fa-bars btnmenu "></i></div>
+
+        </div>
+        <div class="ContDer">
+             <nav class="navbar navbar-expand-lg navbar-light fondo">
+                <div class="container-fluid d-flex  row" id="cabecera">
+                    
+                    <div class="d-flex col-10 p2 justify-content-between align-items-center">
+
+                       
+                        <div>
+                            <div class="collapse navbar-collapse lio" id="navbarNavDropdown">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item dropdown ">
+                                        <a class="nav-link dropdown-toggle text-white CerrarSesion " href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                      Cerrar Sesion
+                                    </a>
+                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                            <li><a class="dropdown-item CerrarSesion" href="/Login">Salir</a></li>
+
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            
+        </div>
+    </div>
+    <div id="Principal">
+      
+        <div id="cuerpo">
+            <div class="menuLateral rounded">
+                <div class="LogoX4">
+                    <i class="fa-solid fa-circle-user"></i>
+                    <p>Usuario</p>
+                </div>
+                <ul>
+                    <li><a href="/Principal" class="active"><i class="fa-solid fa-house"></i>  Inicio</a></li>
+                    <li><a href="/Empresa"><i class="fa-solid fa-building"></i>  Empresas</a></li>
+                    <li><a href="/Empleado"><i class="fa-solid fa-user"></i>  Empleados</a></li>
+                    <li><a href="/MovimientoDinero"><i class="fa-sharp fa-solid fa-calculator"></i>  Movimientos</a></li>
+                    <li><a href="/Perfiles"><i class="fa-solid fa-address-card"></i>  Perfiles</a></li>
+                    <li id="cerrS"><a href="/Login"><i class="fa-solid fa-circle-user "></i>  Cerrar Sesion</a></li>
+                </ul>
+            </div>
+            <div class="main">
+
+                <p class="fuente">Bienvenido</p>
+                 <hr id="linea" >
+
+
+                <div class="container-fluid">
+                    <div class="row">
+                       <div class="col-lg-6">  
+                        
+                       </div>
+                    </div>
+                </div>
+           
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
