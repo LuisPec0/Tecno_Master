@@ -78,7 +78,7 @@
                         <div class="row ">
                             <!-- Button trigger modal -->
                             <div class="col-lg-12">
-                                <button type="button" class="btn bot1 mb-5 mt-4" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar Movimiento </button>
+                                <button type="button" class="btn bot1 mb-5 mt-4" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar Movimiento</button>
                             </div>
 
                             <!-- ----------------------Tabla Movimientos---------------------------- -->
@@ -92,8 +92,8 @@
                                                   <th scope="col">Concepto</th>
                                                   <th scope="col">Usuario</th>
                                                   <th scope="col">Empresa</th>
-                                                  <th scope="col">fechaCracion</th>
-                                                  <th scope="col">fechaActualizacion</th>
+                                                  <th scope="col">Fecha de Creacion</th>
+                                                  <th scope="col">Fecha de Actualizacion</th>
                                                   <th scope="col">Editar</th>
                                                   <th scope="col">Eliminar</th>
                                                 </tr>
@@ -102,7 +102,8 @@
                                                 <tr th:each="movDin:${lista}">
                                                   <th scope="row" th:text="${movDin.id}"></th>
                                                   <th scope="row" th:text="${movDin.monto}"></th>
-                                                  <th scope="row" th:text="${movDin.tipo}"></th>
+                                                  <th scope="row" th:if="${movDin.tipo == 1}" th:text="'Ingreso'"></th>
+                                                  <th scope="row" th:if="${movDin.tipo == 0}" th:text="'Gasto'"></th>
                                                   <th scope="row" th:text="${movDin.concepto}"></th>
                                                   <th scope="row" th:text="${movDin.usuario.nombreEmpleado}"></th>
                                                   <th scope="row" th:text="${movDin.empresa.nombre}"></th>
@@ -112,7 +113,29 @@
                                                       <button class="edit bg-warning text-dark"><i class="fa-solid fa-file-pen"></i></button>
                                                   </td>
                                                   <td>
-                                                      <button class="edit bg-danger text-white"><i class="fa-sharp fa-solid fa-trash"></i></button>
+                                                      <!--Eliminar-->
+                                                      <!-- Button trigger modal -->
+                                                      <button type="button" class="edit bg-danger text-white" data-bs-toggle="modal" data-bs-target="#eliminar"><i class="fa-sharp fa-solid fa-trash"></i>
+                                                      </button>
+
+                                                      <!-- Modal -->
+                                                      <div class="modal fade" id="eliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                          <div class="modal-dialog">
+                                                              <div class="modal-content">
+                                                                  <div class="modal-header">
+                                                                      <h5 class="modal-title" id="eliminarMv">Eliminar</h5>
+                                                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                  </div>
+                                                                  <div class="modal-body">
+                                                                      <p>¿Esta seguro de eliminar el movimiento de dinero?</p>
+                                                                  </div>
+                                                                  <div class="modal-footer">
+                                                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                                      <a th:href="@{/eliminarMovimiento/{id}(id=${movDin.id})}"><button type="button" class="btn btn-primary">Eliminar</button></a>
+                                                                  </div>
+                                                              </div>
+                                                          </div>
+                                                      </div>
                                                   </td>
                                                 </tr>
                                               </tbody>
@@ -159,7 +182,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                        <button type="submit" class="btn btn-primary">Agregar Movimiento</button>
                     </div>
                 </form>
             </div>
