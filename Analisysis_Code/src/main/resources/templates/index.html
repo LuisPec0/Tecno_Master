@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
   <head>
    
     <meta charset="utf-8">
@@ -30,24 +30,15 @@
             <i class="fas fa-user-circle usuario2"></i>
           </div>
                <label for="">Inicio Sesion</label>
-               <input type="text" name="usuario" placeholder="Ususario" class="form-control" required id="usuario"> 
-               <span class="glyphicon glyphicon-user form-control-feedback"></span>
            </div>
-            <div class="form-group has-feedback mt-4">
-            
-               <input type="password" name="contra" placeholder="Password" class="form-control" required id="contra"> 
-               <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-           </div>
-          
-            <div class="form-group mt-3">
-              
-               <input type="submit" value="Acceder"  class="form-control btn bot1 " id="envio1"> 
-           </div>
-           
-           <div class="alert alert-danger" id="mensaje">
-               <strong>Error!</strong> Usuario o password incorrecto
-           </div>
-         
+               <div sec:authorize="!isAuthenticated()">
+                   <a th:href="@{/oauth2/authorization/auth0}">
+                       <a type="button" class="btn bot1 mb-5 mt-4" href="#">Acceder</a>
+                   </a>
+               </div>
+               <div sec:authorize="isAuthenticated()">
+                   <p>You are logged in!</p>
+               </div>
            </form>
          </div>
        </div>

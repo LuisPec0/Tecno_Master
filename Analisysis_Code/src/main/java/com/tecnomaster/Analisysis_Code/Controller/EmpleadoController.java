@@ -32,7 +32,7 @@ public class EmpleadoController
 
 
     // Busca un empleado por medio del nombre del empleado -- Revisar este método a ver si se deja o no se deja debido que no lo piden.
-    @GetMapping("/BuscarNombreEmpleado/{nombreEmpleado}")
+        @GetMapping("/BuscarNombreEmpleado/{nombreEmpleado}")
     public ArrayList<Empleado>  buscarNombreEmpleado(@PathVariable("nombreEmpleado") String nombreEmpleado )
     {
         return empleadoServices.buscarNombreEmpleado(nombreEmpleado);
@@ -58,6 +58,8 @@ public class EmpleadoController
         return empleadoServices.eliminarEmpleado(id);
 
     }
+
+    //Agregar un empleado
     @PostMapping("/users")
     public String agregarEmpleado(@RequestBody Empleado empleado)
     {

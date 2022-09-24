@@ -31,7 +31,7 @@ public class EmpresaController {
         return this.empresaServices.create_ActualizarEnterprise(emp);
     }
 
-    //Modificar Campos de una empresa -- Revisar Este no sirve
+    //Modificar Campos de una empresa -- OK
     @PatchMapping("/enterprises/{id}")
     public Empresa create_ActualizarEnterprise(@PathVariable("id") Integer id, @RequestBody Empresa empresa){
       /*  Empresa emp = empresaServices.buscarEmpresa(id);
