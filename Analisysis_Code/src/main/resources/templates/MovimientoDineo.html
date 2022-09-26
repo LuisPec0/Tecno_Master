@@ -110,20 +110,22 @@
                                                   <th scope="row" th:text="${movDin.fechaCracion}"></th>
                                                   <th scope="row" th:text="${movDin.fechaActualizacion}"></th>
                                                   <td>
-                                                      <button class="edit bg-warning text-dark"><i class="fa-solid fa-file-pen"></i></button>
+                                                      <!--Editar-->
+                                                      <a th:href="@{/MovimientoDinero/{id}(id=${movDin.id})}" class="edit bg-warning text-dark"><i class="fa-solid fa-file-pen"></i></a>
+
                                                   </td>
                                                   <td>
                                                       <!--Eliminar-->
                                                       <!-- Button trigger modal -->
-                                                      <button type="button" class="edit bg-danger text-white" data-bs-toggle="modal" data-bs-target="#eliminar"><i class="fa-sharp fa-solid fa-trash"></i>
+                                                      <button type="button" class="edit bg-danger text-white" data-bs-toggle="modal" th:data-bs-target="'#s'+${movDin.id}"><i class="fa-sharp fa-solid fa-trash"></i>
                                                       </button>
 
                                                       <!-- Modal -->
-                                                      <div class="modal fade" id="eliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                      <div class="modal fade" th:id="'s'+${movDin.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                           <div class="modal-dialog">
                                                               <div class="modal-content">
                                                                   <div class="modal-header">
-                                                                      <h5 class="modal-title" id="eliminarMv">Eliminar</h5>
+                                                                      <h5 class="modal-title" th:text="'Eliminar Movimiento ID: '+${movDin.id}"></h5>
                                                                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                   </div>
                                                                   <div class="modal-body">

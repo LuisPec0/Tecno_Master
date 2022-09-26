@@ -84,4 +84,9 @@ public class MovimientoDineroServicios {
         }else{return "Movimiento de dinero no existe";}
     }
 
+    public String actulizar(MovimientoDinero mvActu){
+        movimientoDineroRepository.save(mvActu);
+        return "Cambios guardados";
+    }
+
 }
